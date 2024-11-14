@@ -1,5 +1,6 @@
 import 'package:easyeats/components/category_section.dart';
 import 'package:flutter/material.dart';
+import 'featured_recipe.dart';
 
 void main() {
   runApp(MyApp());
@@ -18,3 +19,4 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
