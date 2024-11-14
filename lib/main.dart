@@ -1,22 +1,22 @@
+import 'package:easyeats/components/category_section.dart';
 import 'package:flutter/material.dart';
 import 'featured_recipe.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Recipe App',
+      title: 'EasyEats',
       theme: ThemeData(
         primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: const FeaturedRecipePage(),
+      home:
+          CategorySection(), // Directly set CategorySection as the home screen
     );
   }
 }
+
