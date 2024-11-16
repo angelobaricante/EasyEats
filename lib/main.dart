@@ -7,119 +7,323 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Popular Recipes',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a purple toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const PopularRecipesScreen(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
+class PopularRecipesScreen extends StatelessWidget {
+  const PopularRecipesScreen({super.key});
 
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
+  final List<Map<String, dynamic>> recipes = const [
+    {
+      "title": "Spaghetti Bolognese",
+      "description": "A classic Italian pasta dish with rich tomato sauce.",
+      "servings": "4 servings",
+      "time": "45 min",
+      "imageUrl": "https://staticcookist.akamaized.net/wp-content/uploads/sites/22/2021/06/THUMB-LINK-2020-2.jpg?im=AspectCrop=(16,9);Resize,width=570",
+      "ingredients": [
+        "200g spaghetti",
+        "100g minced beef",
+        "1 can of tomatoes",
+        "1 onion",
+        "2 garlic cloves",
+        "Salt and pepper"
+      ],
+      "steps": [
+        "Boil the spaghetti until al dente.",
+        "Sauté the onion and garlic.",
+        "Add minced beef and cook until browned.",
+        "Add tomatoes, salt, and pepper and simmer.",
+        "Serve sauce over spaghetti."
+      ],
+    },
+    {
+      "title": "Chicken Caesar Salad",
+      "description": "Crispy romaine lettuce with grilled chicken and Caesar dressing.",
+      "servings": "2 servings",
+      "time": "20 min",
+      "imageUrl": "https://staticcookist.akamaized.net/wp-content/uploads/sites/22/2024/08/caesar-salad.jpg?im=Resize,width=570",
+      "ingredients": [
+        "1 romaine lettuce",
+        "100g grilled chicken",
+        "Caesar dressing",
+        "Parmesan cheese",
+        "Croutons"
+      ],
+      "steps": [
+        "Chop the romaine lettuce.",
+        "Add grilled chicken, dressing, Parmesan, and croutons.",
+        "Toss everything together and serve."
+      ],
+    },
+    {
+      "title": "Chocolate Brownies",
+      "description": "Rich and fudgy chocolate brownies.",
+      "servings": "8 servings",
+      "time": "30 min",
+      "imageUrl": "https://staticcookist.akamaized.net/wp-content/uploads/sites/22/2023/05/brownies.jpg?im=AspectCrop=(16,9);Resize,width=570",
+      "ingredients": [
+        "200g dark chocolate",
+        "150g butter",
+        "200g sugar",
+        "3 eggs",
+        "100g flour",
+        "1 tsp vanilla extract"
+      ],
+      "steps": [
+        "Melt the chocolate and butter together.",
+        "Mix in sugar, eggs, and vanilla.",
+        "Add flour and stir until combined.",
+        "Bake at 180°C for 20-25 minutes."
+      ],
+    },
+  ];
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
     return Scaffold(
-      appBar: AppBar(
-        // TRY THIS: Try changing the color here to a specific color (to
-        // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
-        // change color while the other colors stay the same.
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
         child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          //
-          // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
-          // action in the IDE, or press "p" in the console), to see the
-          // wireframe for each widget.
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "Popular Recipes",
+                  style: Theme.of(context).textTheme.headlineSmall,
+                ),
+                TextButton(
+                  onPressed: () {
+                    // Navigate to view all recipes
+                  },
+                  child: const Text("View All"),
+                ),
+              ],
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
+            const SizedBox(height: 16),
+            Expanded(
+              child: ListView.builder(
+                itemCount: recipes.length,
+                itemBuilder: (context, index) {
+                  final recipe = recipes[index];
+                  return Padding(
+                    padding: const EdgeInsets.only(bottom: 16.0),
+                    child: GestureDetector(
+                      onTap: () {
+                        showModalBottomSheet(
+                          context: context,
+                          isScrollControlled: true,
+                          shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.vertical(
+                              top: Radius.circular(16),
+                            ),
+                          ),
+                          builder: (context) {
+                            return RecipeDetailSheet(
+                              title: recipe["title"],
+                              description: recipe["description"],
+                              servings: recipe["servings"],
+                              time: recipe["time"],
+                              ingredients: List<String>.from(recipe["ingredients"]),
+                              steps: List<String>.from(recipe["steps"]),
+                            );
+                          },
+                        );
+                      },
+                      child: RecipeCard(
+                        title: recipe["title"],
+                        description: recipe["description"],
+                        servings: recipe["servings"],
+                        time: recipe["time"],
+                        imageUrl: recipe["imageUrl"],
+                      ),
+                    ),
+                  );
+                },
+              ),
             ),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+    );
+  }
+}
+
+class RecipeCard extends StatelessWidget {
+  final String title;
+  final String description;
+  final String servings;
+  final String time;
+  final String imageUrl;
+
+  const RecipeCard({
+    required this.title,
+    required this.description,
+    required this.servings,
+    required this.time,
+    required this.imageUrl,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(8),
+      ),
+      child: Container(
+        height: 200,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8),
+          image: DecorationImage(
+            image: NetworkImage(imageUrl),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            Container(
+              padding: const EdgeInsets.all(8.0),
+              decoration: BoxDecoration(
+                color: Colors.black.withOpacity(0.6),
+                borderRadius: const BorderRadius.only(
+                  bottomLeft: Radius.circular(8),
+                  bottomRight: Radius.circular(8),
+                ),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    title,
+                    style: Theme.of(context)
+                        .textTheme
+                        .titleMedium
+                        ?.copyWith(color: Colors.white),
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
+                  ),
+                  Text(
+                    description,
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyMedium
+                        ?.copyWith(color: Colors.white),
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
+                  ),
+                  const SizedBox(height: 4),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          const Icon(Icons.people, size: 16, color: Colors.white),
+                          const SizedBox(width: 4),
+                          Text(servings, style: const TextStyle(color: Colors.white)),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          const Icon(Icons.access_time, size: 16, color: Colors.white),
+                          const SizedBox(width: 4),
+                          Text(time, style: const TextStyle(color: Colors.white)),
+                        ],
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class RecipeDetailSheet extends StatelessWidget {
+  final String title;
+  final String description;
+  final String servings;
+  final String time;
+  final List<String> ingredients;
+  final List<String> steps;
+
+  const RecipeDetailSheet({
+    required this.title,
+    required this.description,
+    required this.servings,
+    required this.time,
+    required this.ingredients,
+    required this.steps,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return DraggableScrollableSheet(
+      expand: false,
+      builder: (context, scrollController) {
+        return Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: ListView(
+            controller: scrollController,
+            children: [
+              Text(
+                title,
+                style: Theme.of(context).textTheme.headlineSmall,
+              ),
+              const SizedBox(height: 8),
+              Text(
+                description,
+                style: Theme.of(context).textTheme.bodyMedium,
+              ),
+              const SizedBox(height: 16),
+              Text(
+                "Servings: $servings",
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
+              Text(
+                "Time: $time",
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
+              const SizedBox(height: 16),
+              Text(
+                "Ingredients",
+                style: Theme.of(context).textTheme.headlineSmall,
+              ),
+              const SizedBox(height: 8),
+              for (var ingredient in ingredients)
+                Text("• $ingredient", style: Theme.of(context).textTheme.bodyMedium),
+              const SizedBox(height: 16),
+              Text(
+                "Steps",
+                style: Theme.of(context).textTheme.headlineSmall,
+              ),
+              const SizedBox(height: 8),
+              for (var i = 0; i < steps.length; i++)
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 4.0),
+                  child: Text(
+                    "${i + 1}. ${steps[i]}",
+                    style: Theme.of(context).textTheme.bodyMedium,
+                  ),
+                ),
+            ],
+          ),
+        );
+      },
     );
   }
 }
